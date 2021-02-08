@@ -25,6 +25,7 @@ namespace ARVR
             DemoPredicate();
             DemoFunc();
             DemoDelegateAction();
+            //demo end
         }
 
         private void DemoEnum()
