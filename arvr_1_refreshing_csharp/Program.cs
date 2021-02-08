@@ -15,6 +15,7 @@ namespace ARVR
 
         private void Start()
         {
+            //demos
             DemoEnum();
             DemoStruct();
             DemoInterface();
