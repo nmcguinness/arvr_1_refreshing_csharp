@@ -6,13 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Enum\" />
-    <Folder Include="Interface\" />
     <Folder Include="Abstract\" />
+    <Folder Include="Action\" />
+    <Folder Include="Interface\" />
     <Folder Include="Generic\" />
-    <Folder Include="Namespace\" />
-    <Folder Include="PredFuncDelegate\" />
-    <Folder Include="Struct\" />
+    <Folder Include="Delegate\" />
   </ItemGroup>
 
 </Project>

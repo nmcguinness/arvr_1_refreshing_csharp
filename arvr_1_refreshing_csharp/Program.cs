@@ -23,7 +23,7 @@ namespace ARVR
         Fast = 10
     }
 
-    //a really simple struct used to store 3 floatint-point values
+    //a really simple struct used to store 3 floatint-point values with no properties, constructor or other methods (unlike TestStruct)
     struct Vector3
     {
         public float x, y, z;
@@ -36,9 +36,7 @@ namespace ARVR
         public float Y { get; set; }
         public float Z { get; set; }
 
-        //public float sx, sy, sz;
-
-        //2 - can we have a constructor? Yes but not parameterless (...)
+        //can we have a constructor? Yes but not parameterless (...)
         public TestStruct(float x, float y, float z)
         {
             X = x;
@@ -46,14 +44,14 @@ namespace ARVR
             Z = z;
         }
 
-        //3 - other methods
+        //other methods
         public bool Equals(TestStruct other)
         {
             return X == other.X;
         }
     }
 
-    //4 - so why do we like structs? 
+    //so why do we like structs? 
     public struct DummyUselessStruct  //expect to be 8 bytes, actually 12
     {
         public byte a;   //1
@@ -94,13 +92,43 @@ namespace ARVR
             Console.WriteLine("********************** DemoStruct **********************");
             DemoStruct();
 
-            //DemoInterface();
-            //DemoAbstract();
-            //DemoGeneric();
-            //DemoNamespace();
-            //DemoPredicate();
-            //DemoFunc();
-            //DemoDelegateAction();
+            Console.WriteLine("********************** DemoClass **********************");
+            DemoClass();
+
+            Console.WriteLine("********************** DemoNamespace **********************");
+            DemoNamespace();
+
+            Console.WriteLine("********************** DemoStatic **********************");
+            DemoStatic();
+
+            Console.WriteLine("********************** DemoInterface **********************");
+            DemoInterface();
+
+            Console.WriteLine("********************** DemoAbstract **********************");
+            DemoAbstract();
+
+            Console.WriteLine("********************** DemoDataStructures **********************");
+            DemoDataStructures();
+
+            Console.WriteLine("********************** DemoPredicate **********************");
+            DemoPredicate();
+
+            Console.WriteLine("********************** DemoFunc **********************");
+            DemoFunc();
+
+            Console.WriteLine("********************** DemoDelegate **********************");
+            DemoDelegate();
+
+            Console.WriteLine("********************** DemoAction **********************");
+            DemoAction();
+
+            Console.WriteLine("********************** DemoLinq **********************");
+            DemoLinq();
+
+            Console.WriteLine("********************** DemoGeneric **********************");
+            DemoGeneric();
+
+
             //demo end
         }
 
@@ -129,69 +157,95 @@ namespace ARVR
         private void DemoEnum()
         {
             ApplyDamage(AbilityType.Fire, 10);
+            AbilityType type = RandomizeAbility();
 
             Console.WriteLine(sizeof(AbilityType));
-
             Console.WriteLine((int)LerpSpeedType.Medium);
         }
 
         private void DemoStruct()
         {
-            //1 - instanciate - we can declare the variable like a standard data type
+            //instanciate - we can declare the variable like a standard data type
             Vector3 v1;
             v1.x = 3.5f;
             v1.y = 5.67f;
             v1.z = 12.1f;
 
-            //1 - or we can use a constructor
+            //or we can use a constructor
             TestStruct t1 = new TestStruct();
             t1.X = 3.5f;
             t1.Y = 4.67f;
 
-            //5 - so how big is this struct?
+            //so how big is this struct?
             DummyUselessStruct dummy1 = new DummyUselessStruct();
             Console.WriteLine("DummyUselessStruct is " + Marshal.SizeOf(dummy1) + " bytes");
 
-            //6 - now ho big is the struct? did re-organisation change it?
+            //now how big is the struct? did re-organisation change it?
             DummyUselessStructPacked dummy2 = new DummyUselessStructPacked();
             //lets play around with String.Format() - https://dzone.com/articles/java-string-format-examples
             Console.WriteLine(String.Format("DummyUselessStructPacked is {0} bytes", Marshal.SizeOf(dummy2)));
         }
 
+
+        private void DemoClass()
+        {
+
+        }
+
+        private void DemoStatic()
+        {
+            // throw new NotImplementedException();
+        }
+
+
         private void DemoInterface()
         {
-            throw new NotImplementedException();
+
         }
 
         private void DemoAbstract()
         {
-            throw new NotImplementedException();
+
         }
 
         private void DemoGeneric()
         {
-            throw new NotImplementedException();
+
         }
 
         private void DemoNamespace()
         {
-            throw new NotImplementedException();
+
         }
 
         private void DemoPredicate()
         {
-            throw new NotImplementedException();
+
         }
 
         private void DemoFunc()
         {
-            throw new NotImplementedException();
+
         }
 
-        private void DemoDelegateAction()
+        private void DemoDelegate()
         {
-            throw new NotImplementedException();
+
         }
 
+        private void DemoAction()
+        {
+
+        }
+
+        private void DemoDataStructures()
+        {
+           
+        }
+
+        private void DemoLinq()
+        {
+
+        }
     }
 }
