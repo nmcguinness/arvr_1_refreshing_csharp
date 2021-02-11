@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
+using Physics.Particle;
+
+
 /// <summary>
 /// Demonstrates core C# concepts useful when programming in Unity
 /// </summary>
@@ -29,9 +32,17 @@ namespace ARVR
         public float x, y, z;
     }
 
+    class Vector3AsClass
+    {
+        public float x, y, z;
+    }
+
 
     struct TestStruct
     {
+        //events, indexers
+
+        //properties
         public float X { get; set; }
         public float Y { get; set; }
         public float Z { get; set; }
@@ -60,6 +71,7 @@ namespace ARVR
         public byte d;
     }
 
+   // Marshal.SizeOf(rifle)
     public struct DummyUselessStructPacked  //expect to be 8 bytes
     {
         public int b;    //4
@@ -68,15 +80,58 @@ namespace ARVR
         public byte d;
     }
 
+    [StructLayout(LayoutKind.Explicit)]
+    public struct DummyUselessStructSequential  //expect to be 8 bytes
+    {
+        [FieldOffset(0)]
+        public int b;  
+        //4 bytes[4,5,6,7]
+        [FieldOffset(8)]
+        public short c;
+        //4 bytes
+        [FieldOffset(10)]
+        public byte a;
+        //4 bytes
+        [FieldOffset(14)]
+        public byte d;
+    }
+
+
     class TestClass
     {
         public float x, y, z;
         public float sx, sy, sz;
+
+        public TestClass()
+        {
+            x = 0;
+            //set to default...
+        }
+    }
+
+    class Something
+    {
+        private Vector3 position; //struct - inside a class => treated as a reference type
+    }
+
+
+    class Player
+    {
+        public static int count;
+        public int id;
+        public Player()
+        {
+            count++;
+        }
+        public static int getCount()
+        {
+            return count;
+        }
     }
 
     class Program
     {
-       
+
         static void Main(string[] args)
         {
             Program app = new Program();
@@ -85,6 +140,16 @@ namespace ARVR
 
         private void Start()
         {
+            Player.count = 10;
+
+
+
+
+
+            Physics.CollisionDetection x 
+                = new Physics.CollisionDetection();
+
+
             //demos
             Console.WriteLine("********************** DemoEnum **********************");
             DemoEnum();
@@ -131,6 +196,26 @@ namespace ARVR
 
             //demo end
         }
+
+        /*
+         Value-types:
+             - char, byte, bool, int, float, short, long, double, struct(*)
+         Reference-types:
+             - array, Vector, List, Student, Person, Player
+
+          */
+        //structs are treated as VALUE types
+        public void Process(DummyUselessStruct theDummy)
+        {
+            theDummy.a = 125;
+        }
+
+        //REFERENCE types can be changed inside the method
+        public void Process(TestClass theClass)
+        {
+            theClass.sx = 123;
+        }
+
 
         //demo howe to pass an enum to a method and access inside the method
         public void ApplyDamage(AbilityType type, int damage)
