@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-using Physics.Particle;
-
 
 /// <summary>
 /// Demonstrates core C# concepts useful when programming in Unity
 /// </summary>
 namespace ARVR
 {
+    #region Demo Enum
     //why have an integer (4 bytes) and has a range 
     //int the max = 2^(N-1) - 1
     //byte the max = 2^(8-1) - 1 => -127 => 0 => 127
@@ -25,7 +24,9 @@ namespace ARVR
         Medium = 4,
         Fast = 10
     }
+    #endregion
 
+    #region Demo Struct
     //a really simple struct used to store 3 floatint-point values with no properties, constructor or other methods (unlike TestStruct)
     struct Vector3
     {
@@ -61,7 +62,9 @@ namespace ARVR
             return X == other.X;
         }
     }
+    #endregion
 
+    #region Demo Struct - Struct Packing
     //so why do we like structs? 
     public struct DummyUselessStruct  //expect to be 8 bytes, actually 12
     {
@@ -95,8 +98,9 @@ namespace ARVR
         [FieldOffset(14)]
         public byte d;
     }
+    #endregion
 
-
+    #region Demo Class 
     class TestClass
     {
         public float x, y, z;
@@ -114,7 +118,6 @@ namespace ARVR
         private Vector3 position; //struct - inside a class => treated as a reference type
     }
 
-
     class Player
     {
         public static int count;
@@ -128,6 +131,7 @@ namespace ARVR
             return count;
         }
     }
+    #endregion
 
     class Program
     {

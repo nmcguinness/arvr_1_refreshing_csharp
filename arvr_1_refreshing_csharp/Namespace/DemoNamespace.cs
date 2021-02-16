@@ -15,6 +15,8 @@
     //    Fire, Water
     //}
 
+
+    //we can have nested namespaces (if it makes sense!)
     namespace Particle
     {
         enum ParticleType

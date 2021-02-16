@@ -1,11 +1,33 @@
 ﻿namespace ARVR
 {
+    #region Interface Demo
+    public interface IConnect
+    {
+        public bool Connect(string ip, int port);
+        public bool Disconnect();
+    }
+
+    public interface ISecure
+    {
+        string Encrypt(string data);
+        string Decrypt(string data);
+    }
+
+    public interface ISignSecureAndConnect : IConnect, ISecure
+    {
+        string Sign(string data);
+    }
+
+    #endregion
+
+    #region Interface Demo
+    //we try to use a format when naming interfaces of the form I<Verb><Noun>
     public interface IHaveHealth
     {
         //properties
         public int Health { get; set; }
         public int MaxHealth { get; set; }
-        
+
         //methods
         public int Reset();
 
@@ -15,19 +37,22 @@
     public interface IHandleInput
     {
         public float Horizontal { get; }
-        public float Vertical { get;}
+        public float Vertical { get; }
     }
+
 
     public class KeyboardInput : IHandleInput
     {
-        public float Horizontal{
+        public float Horizontal
+        {
             get
             {
                 return -1; // Input.GetHorizontal();   //A, D
             }
         }
 
-        public float Vertical {
+        public float Vertical
+        {
             get
             {
                 return -1; // Input.GetVertical();   //W, S
@@ -74,8 +99,6 @@
     }
 
 
-
-
     class NewAmazingPlayer : IHaveHealth
     {
         public int Health { get; set; }
@@ -83,25 +106,55 @@
 
         public IHandleInput handleInput;
 
-
-        public void Update()
-        {
-            transform.Move(handleInput.Vertical, handleInput.Horizontal, 0);
-        }
-
         public int Reset()
         {
-      //      throw new System.NotImplementedException();
+            throw new System.NotImplementedException();
+        }
+    } 
+    #endregion
+
+    #region Abstract Class Demo 
+    //never instantiated
+    public abstract class Person
+    {
+        //properties
+        public int Version { get; set; }
+
+        //methods
+        public abstract void save(string file); //public, protected(?)
+        public abstract Person load(string file);
+
+        //events
+    }
+
+    public class Lecturer : Person
+    {
+        public override Person load(string file)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public override void save(string file)
+        {
+            throw new System.NotImplementedException();
         }
     }
 
+    public class Student : Person
+    {
+        public override Person load(string file)
+        {
+            throw new System.NotImplementedException();
+        }
 
+        public override void save(string file)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+    #endregion
 
-
-
-
-
-
+    #region Class Demo
     //health, move, damage, buff
     class PlayerAdvanced
     {
@@ -153,5 +206,5 @@
         //private int age;
     }
 
-  
+    #endregion
 }
