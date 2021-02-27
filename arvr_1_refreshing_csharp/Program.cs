@@ -144,15 +144,6 @@ namespace ARVR
 
         private void Start()
         {
-            Player.count = 10;
-
-
-
-
-
-            Physics.CollisionDetection x 
-                = new Physics.CollisionDetection();
-
 
             //demos
             Console.WriteLine("********************** DemoEnum **********************");
@@ -220,7 +211,6 @@ namespace ARVR
             theClass.sx = 123;
         }
 
-
         //demo howe to pass an enum to a method and access inside the method
         public void ApplyDamage(AbilityType type, int damage)
         {
@@ -274,7 +264,6 @@ namespace ARVR
             //lets play around with String.Format() - https://dzone.com/articles/java-string-format-examples
             Console.WriteLine(String.Format("DummyUselessStructPacked is {0} bytes", Marshal.SizeOf(dummy2)));
         }
-
 
         private void DemoClass()
         {
