@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 
@@ -316,10 +317,128 @@ namespace ARVR
 
         }
 
+        public abstract class CharacterType
+        {
+            //abstract methods
+            public string Type { get; }
+        }
+
+        public class HunterType : CharacterType
+        {
+            public new string Type => "Hunter";
+
+            public string defaultModel; //"hunter_1"
+            public string alternateModel; //"hunter_1_upgraded"
+
+            public float aggressionRadius;
+            public float restoreRate; 
+
+            public HunterType(string dm, string am, float ar, float rr)
+            {
+                defaultModel = dm;
+                restoreRate = rr;
+            }
+        }
+
+
         private void DemoDataStructures()
         {
-           
+            /*
+             1) Why and when its used?
+             2) How to add/remove
+             3) How to iterate
+             4) How to get size
+             5) -------
+             */
+
+            //Array => | null | Address  |
+            CharacterType[] characterTypes = new CharacterType[2];
+            characterTypes[0] = new HunterType("h1", "ah1", 10, 5);
+            characterTypes[1] = new HunterType("xh1", "xah1", 60, 25);
+            characterTypes[0] = null;
+
+            foreach(CharacterType c in characterTypes)
+            {
+                HunterType h = c as HunterType;
+                Console.WriteLine(h.defaultModel);
+            }
+
+            for(int i = 0; i < characterTypes.Length; i++)
+            {
+                HunterType h = characterTypes[i] as HunterType;
+                Console.WriteLine(h.defaultModel);
+
+                if(h.alternateModel.Equals("h1"))
+                {
+
+                }
+            }
+
+            //List
+            List<int> numberList = new List<int>();
+            numberList.Add(12);
+            numberList.Add(120);
+            numberList.Add(1200);
+            numberList.Remove(1); //120
+            numberList.RemoveRange(0, 2);
+           // numberList.Count;
+
+            foreach(var x in numberList)
+            {
+                Console.WriteLine(x);
+            }
+
+            //Stack
+            Stack<string> comsumables = new Stack<string>(); //LIFO (last in, first out)
+            comsumables.Push("a");
+            comsumables.Push("d");
+            comsumables.Push("c");
+            comsumables.Push("d");
+            Console.WriteLine(comsumables.Pop()); //d => list now has a, b, c
+            Console.WriteLine(comsumables.Peek()); //c => list still has a, b, c
+            //comsumables.Count;
+            foreach (string s in comsumables)
+            {
+                Console.WriteLine(s);
+            }
+
+            //Queue
+            Queue<double> doubleQueue = new Queue<double>(); //FIFO
+            doubleQueue.Enqueue(3.14);
+            doubleQueue.Enqueue(2.81);
+            doubleQueue.Enqueue(2.99792458);
+
+            double value = doubleQueue.Dequeue(); //3.14
+            Console.WriteLine(doubleQueue.Count);
+
+            foreach (double d in doubleQueue)
+            {
+                Console.WriteLine(d);
+            }
+
+
+            //Set
+            HashSet<String> shopping = new HashSet<string>();
+            shopping.Add("kiwi");
+            shopping.Add("milk");
+            shopping.Add("meat");
+            shopping.Add("orange");
+            shopping.Add("kiwi");
+
+            if (shopping.Add("milk"))
+            {
+                Console.WriteLine("Already added this!!!");
+            }
+
+
+
+            //Dictionary
         }
+
+
+
+
+
 
         private void DemoLinq()
         {
